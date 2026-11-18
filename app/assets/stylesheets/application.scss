@@ -1,0 +1,82 @@
+// Variables
+$brand-dark: #14121f;
+$brand-purple: #7c3aed;
+$brand-accent: #f5b301;
+$bg: #f4f3f8;
+$radius: 14px;
+$gap: 1rem;
+
+// Mixin
+@mixin lift {
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 26px rgba($brand-dark, 0.18);
+  }
+}
+
+// Placeholder used with @extend (inheritance)
+%soft-card {
+  border: 0;
+  border-radius: $radius;
+  background: #fff;
+  box-shadow: 0 2px 10px rgba($brand-dark, 0.08);
+}
+
+body {
+  background: $bg;
+  color: $brand-dark;
+  font-family: "Inter", system-ui, sans-serif;
+}
+
+.navbar {
+  background: linear-gradient(90deg, $brand-dark, darken($brand-purple, 22%)) !important;
+  padding: $gap / 2 0;
+
+  .navbar-brand {
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    color: $brand-accent;
+  }
+  .nav-link {
+    color: #e9e3ff;
+    &:hover { color: #fff; }
+  }
+}
+
+.hero {
+  background: linear-gradient(135deg, $brand-dark 0%, darken($brand-purple, 15%) 100%);
+  color: #fff;
+  border-radius: $radius * 1.5;
+  padding: $gap * 4 $gap * 3;
+
+  h1 { font-weight: 800; }
+  .lead { color: #d9d2f5; }
+}
+
+.card {
+  @extend %soft-card;
+  @include lift;
+
+  .card-title a { color: $brand-dark; }
+}
+
+.badge.text-bg-secondary { background-color: $brand-purple !important; }
+
+.btn-warning {
+  background: $brand-accent;
+  border-color: $brand-accent;
+  font-weight: 600;
+}
+.btn-dark {
+  background: $brand-purple;
+  border-color: $brand-purple;
+  &:hover { background: darken($brand-purple, 10%); border-color: darken($brand-purple, 10%); }
+}
+
+.table { @extend %soft-card; overflow: hidden; }
+
+footer {
+  background: $brand-dark !important;
+  color: #bdb6d9;
+}
