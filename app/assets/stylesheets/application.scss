@@ -30,7 +30,7 @@ body {
 }
 
 .navbar {
-  background: linear-gradient(90deg, $brand-dark, darken($brand-purple, 22%)) !important;
+  background: $brand-dark !important;
   padding: $gap / 2 0;
 
   .navbar-brand {
@@ -45,7 +45,7 @@ body {
 }
 
 .hero {
-  background: linear-gradient(135deg, $brand-dark 0%, darken($brand-purple, 15%) 100%);
+ background: $brand-dark;
   color: #fff;
   border-radius: $radius * 1.5;
   padding: $gap * 4 $gap * 3;
