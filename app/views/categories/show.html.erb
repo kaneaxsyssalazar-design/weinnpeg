@@ -1,0 +1,8 @@
+<h1 class="h3"><%= @category.name %></h1>
+<p class="text-muted"><%= @category.description %></p>
+<div class="row g-3">
+  <% @products.each do |product| %>
+    <%= render "shared/product_card", product: product %>
+  <% end %>
+</div>
+<%= render "shared/pagination_footer", products: @products %>

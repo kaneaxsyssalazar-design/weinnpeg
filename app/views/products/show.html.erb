@@ -1,0 +1,20 @@
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><%= link_to "Home", root_path %></li>
+    <li class="breadcrumb-item"><%= link_to @product.category.name, category_path(@product.category) %></li>
+    <li class="breadcrumb-item active"><%= @product.name %></li>
+  </ol>
+</nav>
+<div class="card shadow-sm"><div class="card-body">
+  <h1 class="h3"><%= @product.name %></h1>
+  <% if @product.on_sale %><span class="badge text-bg-danger">On sale</span><% end %>
+  <p class="mt-3"><%= @product.description %></p>
+  <p class="h4"><%= money(@product.price) %></p>
+  <p class="text-muted"><%= @product.stock_quantity.positive? ? "#{@product.stock_quantity} in stock" : "Out of stock" %></p>
+  <% if @product.stock_quantity.positive? %>
+    <%= form_with url: add_to_cart_path(@product), class: "d-flex gap-2" do |f| %>
+      <%= f.number_field :quantity, value: 1, min: 1, max: @product.stock_quantity, class: "form-control w-auto" %>
+      <%= f.submit "Add to cart", class: "btn btn-dark" %>
+    <% end %>
+  <% end %>
+</div></div>

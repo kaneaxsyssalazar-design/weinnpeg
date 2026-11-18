@@ -1,0 +1,27 @@
+<h1 class="h3">Your cart</h1>
+<% if @items.empty? %>
+  <p>Your cart is empty. <%= link_to "Keep shopping", products_path %></p>
+<% else %>
+  <table class="table align-middle bg-white">
+    <thead><tr><th>Product</th><th>Price</th><th style="width:200px">Quantity</th><th>Line total</th><th></th></tr></thead>
+    <tbody>
+      <% @items.each do |product, qty| %>
+        <tr>
+          <td><%= link_to product.name, product %></td>
+          <td><%= money(product.price) %></td>
+          <td>
+            <%= form_with url: update_cart_item_path(product), method: :patch, class: "d-flex gap-1" do |f| %>
+              <%= f.number_field :quantity, value: qty, min: 1, class: "form-control form-control-sm" %>
+              <%= f.submit "Update", class: "btn btn-sm btn-outline-dark" %>
+            <% end %>
+          </td>
+          <td><%= money(product.price * qty) %></td>
+          <td><%= button_to "Remove", remove_cart_item_path(product), method: :delete, class: "btn btn-sm btn-outline-danger" %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <% subtotal = @items.sum { |p, q| p.price * q } %>
+  <p class="text-end">Subtotal: <strong><%= money(subtotal) %></strong> <span class="text-muted">(taxes calculated at checkout)</span></p>
+  <div class="text-end"><%= link_to "Proceed to checkout", checkout_path, class: "btn btn-warning" %></div>
+<% end %>

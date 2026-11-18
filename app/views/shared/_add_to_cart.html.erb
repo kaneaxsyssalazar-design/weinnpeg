@@ -1,0 +1,5 @@
+<% if product.stock_quantity.positive? %>
+  <%= button_to "Add to cart", add_to_cart_path(product), method: :post, params: { quantity: 1 }, class: "btn btn-sm btn-dark" %>
+<% else %>
+  <span class="text-danger small">Out of stock</span>
+<% end %>

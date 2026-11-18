@@ -1,0 +1,6 @@
+<div class="text-center my-5">
+  <h1>Age Verification</h1>
+  <p class="lead">This site sells vaping products and is for adults of legal age only.</p>
+  <%= button_to "I am of legal age - enter", age_gate_path, params: { confirm: "yes" }, class: "btn btn-dark btn-lg" %>
+  <%= button_to "I am not - leave", age_gate_path, params: { confirm: "no" }, class: "btn btn-link mt-2" %>
+</div>

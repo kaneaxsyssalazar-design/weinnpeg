@@ -1,0 +1,20 @@
+<h1 class="h3">Invoice #<%= @order.id %></h1>
+<p>
+  <strong><%= @order.customer.full_name %></strong> (<%= @order.customer.email %>)<br>
+  Ship to: <%= @order.shipping_address %><br>
+  Status: <span class="badge text-bg-secondary"><%= @order.status %></span>
+  &middot; Placed <%= l @order.created_at, format: :long %>
+</p>
+<table class="table bg-white">
+  <thead><tr><th>Product</th><th>Unit price</th><th>Qty</th><th class="text-end">Line total</th></tr></thead>
+  <tbody>
+    <% @order.order_items.each do |item| %>
+      <tr><td><%= item.product.name %></td><td><%= money(item.unit_price) %></td>
+          <td><%= item.quantity %></td><td class="text-end"><%= money(item.line_total) %></td></tr>
+    <% end %>
+  </tbody>
+</table>
+<%= render "shared/totals", subtotal: @order.subtotal, gst: @order.gst_amount, pst: @order.pst_amount,
+                            hst: @order.hst_amount, total: @order.total_amount %>
+<p class="text-muted small">Tax rates for <%= @order.province.name %> were locked in when this order was placed.</p>
+<%= link_to "Continue shopping", products_path, class: "btn btn-dark" %>

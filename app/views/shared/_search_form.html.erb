@@ -1,0 +1,7 @@
+<%= form_with url: products_path, method: :get, class: "d-flex gap-2" do |f| %>
+  <%= f.text_field :q, value: params[:q], placeholder: "Search keyword", class: "form-control form-control-sm", "aria-label": "Keyword" %>
+  <%= f.select :category_id,
+        options_for_select([["All categories", ""]] + Category.order(:name).pluck(:name, :id), params[:category_id]),
+        {}, class: "form-select form-select-sm", "aria-label": "Category" %>
+  <%= f.submit "Search", class: "btn btn-sm btn-warning" %>
+<% end %>

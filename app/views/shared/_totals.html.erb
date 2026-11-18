@@ -1,0 +1,7 @@
+<table class="table table-sm w-auto ms-auto">
+  <tr><th>Subtotal</th><td class="text-end"><%= money(subtotal) %></td></tr>
+  <% if gst.positive? %><tr><th>GST</th><td class="text-end"><%= money(gst) %></td></tr><% end %>
+  <% if pst.positive? %><tr><th>PST</th><td class="text-end"><%= money(pst) %></td></tr><% end %>
+  <% if hst.positive? %><tr><th>HST</th><td class="text-end"><%= money(hst) %></td></tr><% end %>
+  <tr class="table-active"><th>Total</th><td class="text-end"><strong><%= money(total) %></strong></td></tr>
+</table>

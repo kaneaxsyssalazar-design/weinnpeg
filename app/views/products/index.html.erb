@@ -1,0 +1,10 @@
+<h1 class="h3">Products</h1>
+<% if params[:q].present? || params[:category_id].present? %>
+  <p class="text-muted"><%= pluralize(@products.total_count, "result") %> found.
+    <%= link_to "Clear search", products_path %></p>
+<% end %>
+<div class="row g-3">
+  <%= render partial: "shared/product_card", collection: @products, as: :product %>
+</div>
+<% if @products.empty? %><p>No products matched your search.</p><% end %>
+<%= render "shared/pagination_footer", products: @products %>
