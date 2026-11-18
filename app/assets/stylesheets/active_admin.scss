@@ -15,3 +15,29 @@
 // For example, to change the default status-tag color:
 //
 //   .status_tag { background: #6090DB; }
+$admin-purple: #7c3aed;
+
+body.active_admin {
+  #header {
+    background: linear-gradient(90deg, #14121f, #4c1d95);
+    box-shadow: none;
+
+    h1 a { color: #f5b301; font-weight: 800; }
+    ul.tabs > li > a { color: #e9e3ff; &:hover { color: #fff; } }
+    ul.tabs > li.current > a { background: rgba(255, 255, 255, 0.15); border-radius: 6px; }
+  }
+
+  #title_bar { background: #fff; border-bottom: 1px solid #e5e2f0; }
+
+  .panel, table.index_table {
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  .action_item a, input[type=submit], button, a.button {
+    background: $admin-purple;
+    border-radius: 8px;
+    color: #fff;
+    &:hover { background: darken($admin-purple, 10%); }
+  }
+}
