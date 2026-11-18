@@ -80,3 +80,17 @@ footer {
   background: $brand-dark !important;
   color: #bdb6d9;
 }
+.product-img {
+  display: block;
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: $radius $radius 0 0;
+}
+.placeholder-img {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #e6e2f5;
+  color: #7a7499;
+}

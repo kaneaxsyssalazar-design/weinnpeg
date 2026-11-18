@@ -9,6 +9,7 @@ class Product < ApplicationRecord
                              numericality: { only_integer: true, greater_than_or_equal_to: 0 }
   validates :on_sale, inclusion: { in: [true, false] }
 
+
   # Keyword search in title or description, optionally inside one category (2.6)
   def self.search(keyword, category_id)
     scope = all
