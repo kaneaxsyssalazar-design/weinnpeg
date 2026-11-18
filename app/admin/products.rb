@@ -15,4 +15,17 @@ ActiveAdmin.register Product do
   filter :category
   filter :name
   filter :on_sale
+
+  form do |f|
+    f.semantic_errors
+    f.inputs do
+      f.input :category
+      f.input :name
+      f.input :description
+      f.input :price
+      f.input :stock_quantity
+      f.input :on_sale
+    end
+    f.actions
+  end
 end
