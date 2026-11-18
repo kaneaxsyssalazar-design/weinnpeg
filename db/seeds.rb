@@ -40,3 +40,4 @@ products.each do |name, desc, price, stock, sale, cat|
   end
 end
 puts "Seeded #{Province.count} provinces, #{Category.count} categories, #{Product.count} products"
+AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?
