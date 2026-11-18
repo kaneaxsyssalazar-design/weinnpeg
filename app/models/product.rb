@@ -1,6 +1,7 @@
 class Product < ApplicationRecord
   belongs_to :category
   has_many :order_items, dependent: :restrict_with_error
+  has_one_attached :image
 
   validates :name, presence: true, length: { maximum: 120 }
   validates :description, presence: true, length: { minimum: 10 }
