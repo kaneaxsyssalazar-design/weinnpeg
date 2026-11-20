@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_11_18_205347) do
+ActiveRecord::Schema[8.1].define(version: 2026_11_20_150001) do
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
     t.text "body"
@@ -136,6 +136,15 @@ ActiveRecord::Schema[8.1].define(version: 2026_11_18_205347) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["code"], name: "index_provinces_on_code", unique: true
+  end
+
+  create_table "site_pages", force: :cascade do |t|
+    t.string "slug", null: false
+    t.string "title", null: false
+    t.text "body", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["slug"], name: "index_site_pages_on_slug", unique: true
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
