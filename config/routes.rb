@@ -10,6 +10,8 @@ Rails.application.routes.draw do
   resources :products, only: %i[index show]
   resources :categories, only: :show
 
+  get "about", to: "pages#show", defaults: { slug: "about" }, as: :about
+get "contact", to: "pages#show", defaults: { slug: "contact" }, as: :contact
   get    "cart", to: "cart#show", as: :cart
   post   "cart/add/:product_id", to: "cart#add", as: :add_to_cart
   patch  "cart/update/:product_id", to: "cart#update", as: :update_cart_item
