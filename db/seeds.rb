@@ -41,3 +41,15 @@ products.each do |name, desc, price, stock, sale, cat|
 end
 puts "Seeded #{Province.count} provinces, #{Category.count} categories, #{Product.count} products"
 AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?
+SitePage.find_or_create_by!(slug: "about") do |p|
+  p.title = "About We inn Peg Vapes"
+  p.body = "We inn Peg Vapes is a Winnipeg vape shop for adult customers. " \
+           "We stock starter kits, tanks, coils and e-liquids, and we are happy to help " \
+           "you find what suits you.\n\nYou must be of legal age to shop here."
+end
+SitePage.find_or_create_by!(slug: "contact") do |p|
+  p.title = "Contact us"
+  p.body = "Visit us in downtown Winnipeg, Manitoba.\n\n" \
+           "Email: hello@weinnpegvapes.example\nPhone: 204-555-0100\n\n" \
+           "Store hours: Monday to Saturday, 10 am to 8 pm."
+end
