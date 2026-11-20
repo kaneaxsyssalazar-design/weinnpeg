@@ -40,7 +40,10 @@ products.each do |name, desc, price, stock, sale, cat|
   end
 end
 puts "Seeded #{Province.count} provinces, #{Category.count} categories, #{Product.count} products"
-AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?
+AdminUser.find_or_create_by!(email: "admin@example.com") do |u|
+  u.password = "password"
+  u.password_confirmation = "password"
+end
 SitePage.find_or_create_by!(slug: "about") do |p|
   p.title = "About We inn Peg Vapes"
   p.body = "We inn Peg Vapes is a Winnipeg vape shop for adult customers. " \
