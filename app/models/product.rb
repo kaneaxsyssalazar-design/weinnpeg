@@ -8,7 +8,7 @@ class Product < ApplicationRecord
   validates :price, presence: true, numericality: { greater_than_or_equal_to: 0.01 }
   validates :stock_quantity, presence: true,
                              numericality: { only_integer: true, greater_than_or_equal_to: 0 }
-  validates :on_sale, inclusion: { in: [true, false] }
+  validates :on_sale, inclusion: { in: [ true, false ] }
 
 
   # Keyword search in title or description, optionally inside one category (2.6)

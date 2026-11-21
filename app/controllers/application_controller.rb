@@ -29,6 +29,6 @@ class ApplicationController < ActionController::Base
 
   def cart_items
     products = Product.where(id: cart.keys).index_by { |p| p.id.to_s }
-    cart.filter_map { |id, qty| [products[id], qty] if products[id] }
+    cart.filter_map { |id, qty| [ products[id], qty ] if products[id] }
   end
 end
