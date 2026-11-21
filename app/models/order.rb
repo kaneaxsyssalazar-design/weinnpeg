@@ -1,7 +1,7 @@
 class Order < ApplicationRecord
   STATUSES = %w[new paid shipped].freeze
 
-  belongs_to :customer
+  belongs_to :user
   belongs_to :province
   has_many :order_items, dependent: :destroy
   has_many :products, through: :order_items
@@ -13,11 +13,12 @@ class Order < ApplicationRecord
   validates :gst_rate, :pst_rate, :hst_rate, presence: true,
                                              numericality: { greater_than_or_equal_to: 0 }
 
-  # Build an order from the session cart, copying prices and tax rates (snapshot).
-  def self.build_from_cart(cart_items, customer)
-    province = customer.province
-    order = new(customer: customer, province: province,
-                shipping_address: "#{customer.address}, #{customer.city}, #{province.code} #{customer.postal_code}",
+  # Build (not save) an order from the session cart. Prices and tax rates are
+  # copied onto the order so later changes never alter past orders (3.3.2).
+  def self.build_from_cart(cart_items, user)
+    province = user.province
+    order = new(user: user, province: province,
+                shipping_address: "#{user.address}, #{user.city}, #{province.code} #{user.postal_code}",
                 gst_rate: province.gst, pst_rate: province.pst, hst_rate: province.hst)
     cart_items.each do |product, qty|
       order.order_items.build(product: product, quantity: qty, unit_price: product.price)
