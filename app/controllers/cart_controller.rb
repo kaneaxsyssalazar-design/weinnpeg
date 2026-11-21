@@ -5,7 +5,7 @@ class CartController < ApplicationController
 
   def add
     product = Product.find(params[:product_id])
-    qty = [params.fetch(:quantity, 1).to_i, 1].max
+    qty = [ params.fetch(:quantity, 1).to_i, 1 ].max
     cart[product.id.to_s] = cart.fetch(product.id.to_s, 0) + qty
     redirect_back fallback_location: cart_path, notice: "#{product.name} added to your cart."
   end

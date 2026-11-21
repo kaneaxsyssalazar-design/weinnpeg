@@ -14,8 +14,8 @@ class User < ApplicationRecord
 
   # Keep password columns out of ActiveAdmin search and filters.
   def self.ransackable_attributes(_auth_object = nil)
-    %w[email first_name last_name city created_at]
-  end
+  %w[id email first_name last_name city created_at]
+end
 
   def self.ransackable_associations(_auth_object = nil)
     %w[orders province]
