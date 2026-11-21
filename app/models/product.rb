@@ -1,7 +1,10 @@
 class Product < ApplicationRecord
   belongs_to :category
   has_many :order_items, dependent: :restrict_with_error
-  has_one_attached :image
+  has_one_attached :image do |attachable|
+  attachable.variant :thumb, resize_to_fill: [400, 300]
+  attachable.variant :large, resize_to_limit: [1200, 1200]
+end
 
   validates :name, presence: true, length: { maximum: 120 }
   validates :description, presence: true, length: { minimum: 10 }
