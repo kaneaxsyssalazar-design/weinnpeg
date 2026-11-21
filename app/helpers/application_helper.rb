@@ -1,10 +1,9 @@
-module ApplicationHelper
-  def money(amount) = number_to_currency(amount)
-    def product_image(product, css: "")
+module ProductsHelper
+  def product_image(product, size: :thumb, css: "")
   if product.image.attached?
-    image_tag product.image, class: "product-img #{css}", alt: product.name
+    image_tag product.image.variant(size), class: css, alt: product.name
   else
-    content_tag(:div, "No image", class: "product-img placeholder-img #{css}")
+    tag.div "No image", class: "placeholder-img product-img #{css}"
   end
 end
 end
