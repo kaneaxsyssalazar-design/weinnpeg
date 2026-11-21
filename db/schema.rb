@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_11_20_150001) do
+ActiveRecord::Schema[8.1].define(version: 2026_11_20_150002) do
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
     t.text "body"
@@ -72,19 +72,6 @@ ActiveRecord::Schema[8.1].define(version: 2026_11_20_150001) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "customers", force: :cascade do |t|
-    t.string "first_name", null: false
-    t.string "last_name", null: false
-    t.string "email", null: false
-    t.string "address", null: false
-    t.string "city", null: false
-    t.string "postal_code", null: false
-    t.integer "province_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["province_id"], name: "index_customers_on_province_id"
-  end
-
   create_table "order_items", force: :cascade do |t|
     t.integer "order_id", null: false
     t.integer "product_id", null: false
@@ -97,7 +84,6 @@ ActiveRecord::Schema[8.1].define(version: 2026_11_20_150001) do
   end
 
   create_table "orders", force: :cascade do |t|
-    t.integer "customer_id", null: false
     t.integer "province_id", null: false
     t.string "status", default: "new", null: false
     t.text "shipping_address", null: false
@@ -111,8 +97,9 @@ ActiveRecord::Schema[8.1].define(version: 2026_11_20_150001) do
     t.decimal "total_amount", precision: 10, scale: 2, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["customer_id"], name: "index_orders_on_customer_id"
+    t.integer "user_id", null: false
     t.index ["province_id"], name: "index_orders_on_province_id"
+    t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
   create_table "products", force: :cascade do |t|
@@ -147,12 +134,28 @@ ActiveRecord::Schema[8.1].define(version: 2026_11_20_150001) do
     t.index ["slug"], name: "index_site_pages_on_slug", unique: true
   end
 
+  create_table "users", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.datetime "remember_created_at"
+    t.string "first_name", null: false
+    t.string "last_name", null: false
+    t.string "address", null: false
+    t.string "city", null: false
+    t.string "postal_code", null: false
+    t.integer "province_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["province_id"], name: "index_users_on_province_id"
+  end
+
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "customers", "provinces"
   add_foreign_key "order_items", "orders"
   add_foreign_key "order_items", "products"
-  add_foreign_key "orders", "customers"
   add_foreign_key "orders", "provinces"
+  add_foreign_key "orders", "users"
   add_foreign_key "products", "categories"
+  add_foreign_key "users", "provinces"
 end
