@@ -53,6 +53,6 @@ end
 SitePage.find_or_create_by!(slug: "contact") do |p|
   p.title = "Contact us"
   p.body = "Visit us in downtown Winnipeg, Manitoba.\n\n" \
-           "Email: hello@weinnpegvapes.example\nPhone: 204-555-0100\n\n" \
+           "Email: service@weinnpegvapes.example\nPhone: 204-555-0100\n\n" \
            "Store hours: Monday to Saturday, 10 am to 8 pm."
 end
