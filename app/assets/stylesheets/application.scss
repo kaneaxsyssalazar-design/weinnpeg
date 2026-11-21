@@ -31,7 +31,7 @@ body {
 
 .navbar {
   background: $brand-dark !important;
-  padding: $gap / 2 0;
+  padding: $gap * 0.5 0;
 
   .navbar-brand {
     font-weight: 800;
@@ -45,7 +45,7 @@ body {
 }
 
 .hero {
- background: $brand-dark;
+  background: $brand-dark;
   color: #fff;
   border-radius: $radius * 1.5;
   padding: $gap * 4 $gap * 3;
