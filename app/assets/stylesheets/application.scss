@@ -40,7 +40,12 @@ body {
   }
   .nav-link {
     color: #e9e3ff;
+    white-space: nowrap;
     &:hover { color: #fff; }
+  }
+  form {
+    .form-control { min-width: 9rem; }
+    .form-select { min-width: 9rem; }
   }
 }
 
