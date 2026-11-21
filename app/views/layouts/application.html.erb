@@ -10,9 +10,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
 
 </head>
-<body class="bg-light">
+<body class="bg-light d-flex flex-column min-vh-100">
   <%= render "shared/navbar" %>
-  <main class="container py-4">
+  <main class="container py-4 flex-grow-1">
     <%= render "shared/flash" %>
     <%= yield %>
   </main>
