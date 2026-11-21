@@ -13,6 +13,8 @@ class Product < ApplicationRecord
 
   # Keyword search in title or description, optionally inside one category (2.6)
   def self.search(keyword, category_id)
+    scope :discounted, -> { where(on_sale: true) }
+scope :newly_added, -> { where("products.created_at >= ?", 30.days.ago) }
     scope = all
     scope = scope.where(category_id: category_id) if category_id.present?
     if keyword.present?
