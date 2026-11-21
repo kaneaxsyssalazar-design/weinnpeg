@@ -1,4 +1,11 @@
 <h1 class="h3">Products</h1>
+<div class="btn-group mb-3" role="group" aria-label="Filter products">
+  <% [["All", nil], ["On sale", "on_sale"], ["New", "new"]].each do |label, value| %>
+    <%= link_to label,
+          products_path(q: params[:q], category_id: params[:category_id], filter: value),
+          class: "btn btn-sm #{params[:filter].to_s == value.to_s ? 'btn-dark' : 'btn-outline-dark'}" %>
+  <% end %>
+</div>
 <% if params[:q].present? || params[:category_id].present? %>
   <p class="text-muted"><%= pluralize(@products.total_count, "result") %> found.
     <%= link_to "Clear search", products_path %></p>
