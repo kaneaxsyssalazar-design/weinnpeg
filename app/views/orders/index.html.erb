@@ -1,0 +1,19 @@
+<h1 class="h3">My orders</h1>
+<% if @orders.empty? %>
+  <p>You haven't placed any orders yet. <%= link_to "Start shopping", products_path %></p>
+<% else %>
+  <table class="table bg-white align-middle">
+    <thead><tr><th>Order</th><th>Date</th><th>Status</th><th class="text-end">Total</th><th></th></tr></thead>
+    <tbody>
+      <% @orders.each do |order| %>
+        <tr>
+          <td>#<%= order.id %></td>
+          <td><%= l order.created_at, format: :long %></td>
+          <td><span class="badge text-bg-secondary"><%= order.status %></span></td>
+          <td class="text-end"><%= money(order.total_amount) %></td>
+          <td><%= link_to "View invoice", order_path(order), class: "btn btn-sm btn-outline-dark" %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>

@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
+  devise_for :users
 
   root "home#index"
 
@@ -19,5 +20,5 @@ get "contact", to: "pages#show", defaults: { slug: "contact" }, as: :contact
 
   get  "checkout", to: "checkout#new", as: :checkout
   post "checkout", to: "checkout#create"
-  resources :orders, only: :show
+  resources :orders, only: %i[index show]
 end

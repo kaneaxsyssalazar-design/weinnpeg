@@ -1,0 +1,24 @@
+<div class="row justify-content-center">
+  <div class="col-md-8 col-lg-6">
+    <h1 class="h3">Sign up</h1>
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: "row g-3 bg-white p-3 rounded" }) do |f| %>
+      <% if resource.errors.any? %>
+        <div class="alert alert-danger col-12"><ul class="mb-0">
+          <% resource.errors.full_messages.each do |message| %><li><%= message %></li><% end %>
+        </ul></div>
+      <% end %>
+      <div class="col-md-6"><%= f.label :first_name, class: "form-label" %><%= f.text_field :first_name, autofocus: true, class: "form-control" %></div>
+      <div class="col-md-6"><%= f.label :last_name, class: "form-label" %><%= f.text_field :last_name, class: "form-control" %></div>
+      <div class="col-12"><%= f.label :email, class: "form-label" %><%= f.email_field :email, autocomplete: "email", class: "form-control" %></div>
+      <div class="col-md-6"><%= f.label :password, class: "form-label" %><%= f.password_field :password, autocomplete: "new-password", class: "form-control" %></div>
+      <div class="col-md-6"><%= f.label :password_confirmation, "Confirm password", class: "form-label" %><%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %></div>
+      <div class="col-12"><%= f.label :address, class: "form-label" %><%= f.text_field :address, class: "form-control" %></div>
+      <div class="col-md-5"><%= f.label :city, class: "form-label" %><%= f.text_field :city, class: "form-control" %></div>
+      <div class="col-md-4"><%= f.label :province_id, "Province", class: "form-label" %>
+        <%= f.collection_select :province_id, Province.order(:name), :id, :name, { prompt: "Choose..." }, class: "form-select" %></div>
+      <div class="col-md-3"><%= f.label :postal_code, class: "form-label" %><%= f.text_field :postal_code, placeholder: "R3C 0A1", class: "form-control" %></div>
+      <div class="col-12"><%= f.submit "Create account", class: "btn btn-warning" %></div>
+    <% end %>
+    <p class="mt-3">Already have an account? <%= link_to "Log in", new_session_path(resource_name) %></p>
+  </div>
+</div>
