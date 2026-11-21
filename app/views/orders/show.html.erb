@@ -1,6 +1,6 @@
 <h1 class="h3">Invoice #<%= @order.id %></h1>
 <p>
-  <strong><%= @order.customer.full_name %></strong> (<%= @order.customer.email %>)<br>
+  <strong><%= @order.user.full_name %></strong> (<%= @order.user.email %>)<br>
   Ship to: <%= @order.shipping_address %><br>
   Status: <span class="badge text-bg-secondary"><%= @order.status %></span>
   &middot; Placed <%= l @order.created_at, format: :long %>
@@ -17,4 +17,5 @@
 <%= render "shared/totals", subtotal: @order.subtotal, gst: @order.gst_amount, pst: @order.pst_amount,
                             hst: @order.hst_amount, total: @order.total_amount %>
 <p class="text-muted small">Tax rates for <%= @order.province.name %> were locked in when this order was placed.</p>
+<%= link_to "My orders", orders_path, class: "btn btn-outline-dark" %>
 <%= link_to "Continue shopping", products_path, class: "btn btn-dark" %>
