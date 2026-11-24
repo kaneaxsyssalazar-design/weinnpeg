@@ -20,5 +20,7 @@ get "contact", to: "pages#show", defaults: { slug: "contact" }, as: :contact
 
   get  "checkout", to: "checkout#new", as: :checkout
   post "checkout", to: "checkout#create"
+  get  "checkout/success", to: "checkout#success", as: :checkout_success
+  get  "checkout/cancel", to: "checkout#cancel", as: :checkout_cancel
   resources :orders, only: %i[index show]
 end

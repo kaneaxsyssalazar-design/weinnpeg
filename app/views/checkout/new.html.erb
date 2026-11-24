@@ -20,7 +20,7 @@
       <p><%= @order.shipping_address %></p>
       <%= link_to "Change address", edit_user_registration_path, class: "btn btn-sm btn-outline-dark mb-3" %>
       <p class="small text-muted">Taxes shown are for <%= @order.province.name %>.</p>
-      <%= button_to "Place order", checkout_path, method: :post, class: "btn btn-warning w-100" %>
+      <%= button_to "Pay with Card", checkout_path, method: :post, class: "btn btn-warning w-100" %>
     </div></div>
   </div>
 </div>
