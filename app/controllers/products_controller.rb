@@ -5,5 +5,11 @@ class ProductsController < ApplicationController
   products = products.discounted if params[:filter] == "on_sale"
   products = products.newly_added if params[:filter] == "new"
   @products = products.includes(:category).order(:name).page(params[:page]).per(9)
-end
+  end
+    def show
+    @product = Product.includes(:category).find_by(id: params[:id])
+    return unless @product.nil?
+
+    redirect_to products_path, alert: "That product could not be found."
+    end
 end

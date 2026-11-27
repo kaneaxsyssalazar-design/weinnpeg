@@ -1,8 +1,10 @@
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
-    <li class="breadcrumb-item"><%= link_to "Home", root_path %></li>
-    <li class="breadcrumb-item"><%= link_to @product.category.name, category_path(@product.category) %></li>
-    <li class="breadcrumb-item active"><%= @product.name %></li>
+      <li class="breadcrumb-item"><%= link_to "Home", root_path %></li>
+      <% if @product.category %>
+        <li class="breadcrumb-item"><%= link_to @product.category.name, category_path(@product.category) %></li>
+      <% end %>
+      <li class="breadcrumb-item active"><%= @product.name %></li>
   </ol>
 </nav>
 <div class="card shadow-sm"><div class="card-body">
